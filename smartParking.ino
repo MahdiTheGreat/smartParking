@@ -251,12 +251,14 @@ void DetectButtons()
     }
     }  
 
-  if (key == 'D') //Detecting Buttons on Column 4
+  if (key == 'A' || key == 'B' ) //Detecting Buttons on Column 4
   {
+    if (key == 'A')
+    {Serial.println ("Addition"); action = '+';}
+     if (key == 'B')
+    {Serial.println ("Subtraction"); action = '-'; }
     Num1 = Number;    
     Number =0;
-    mySerial.println ("Devesion");
-    action = '/';  
     delay(10);
   }
   
@@ -264,7 +266,7 @@ void DetectButtons()
 
 void CalculateResult()
 {
- if (action=='/'){
+ if (action=='+' or action=='-'){
   User chosenUser;
   for (int i = 0; i < userNum; i++) {
     mySerial.println ("username is");
@@ -319,9 +321,9 @@ void DisplayResult()
   printOnLcd(0,line);
   line="c: "+String(capacityPerFloor[2])+" "+"t: "+String(sumCapacity);
   printOnLcd(1,line);
-  line="username: "+String(Num1);
+  line="user: "+String(Num1);
   printOnLcd(2,line);
-  line="password: "+String(Num2)+" "+"input: "+String(Number);
+  line="pass: "+String(Num2)+" "+"in: "+String(Number);
   printOnLcd(3,line);
   delay(10); //Wait for display to show info
   lcd.clear();
